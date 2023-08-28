@@ -2,17 +2,25 @@ import express from 'express'
 import dotenv from "dotenv/config.js"
 import cors from "cors"
 import usuario from "../routes/user.js"
+import { dbConnection } from '../database/config.js'
 
 class Server {
 
   constructor() {
     this.app = express()
-
+    
     //middlewares
     this.middlewares()
 
+    //conexion a base de datos
+    this.conectar()
+
     //routes
     this.routes()
+  }
+
+  async conectar(){
+    await dbConnection()
   }
 
   middlewares() {
