@@ -1,7 +1,7 @@
 import express from 'express'
 import dotenv from "dotenv/config.js"
 import cors from "cors"
-import usuario from "../routes/user.js"
+import instructor from "../routes/instructor.js"
 import { dbConnection } from '../database/config.js'
 
 class Server {
@@ -38,7 +38,7 @@ class Server {
 
   routes(){
 
-    this.app.use("/api/usuarios", usuario)
+    this.app.use("/api/instructores", instructor)
    
   }
 
