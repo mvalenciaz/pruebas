@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { InstructoresPost } from "../controllers/instructor.js"
+import { InstructoresPost, instructoresGet } from "../controllers/instructor.js"
 import { check } from "express-validator"
 import { validarCampos } from "../middlewares/validar-campos.js"
 import { esCorreoValido, esDocumentoValido } from "../helpers/validaciones-bd.js"
@@ -7,7 +7,7 @@ import { esCorreoValido, esDocumentoValido } from "../helpers/validaciones-bd.js
 
 const router = Router()
 
-router.get('/', )
+router.get('/', instructoresGet)
 
 router.post('/',[
     check("nombre", "El nombre es obligatorio").notEmpty(),

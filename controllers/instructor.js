@@ -1,8 +1,12 @@
 import Instructor from "../models/instructor.js"
 
 
-const instructoresGet = (req, res) => {
-    const instructor = new instructor()
+const instructoresGet = async(req, res) => {
+    const instructores = await Instructor.find()
+
+    res.json({
+      instructores
+    })
 }
 
 
@@ -25,4 +29,4 @@ const InstructoresPost = async function (req, res) {
 
 
 
-export { InstructoresPost}
+export { InstructoresPost, instructoresGet}
