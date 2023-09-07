@@ -14,7 +14,6 @@ const InstructorSchema = Schema({
     numeroDocumento:{
         type:String,
         required:[true,"el numero de documento es obligatorio"],
-        unique:true,
     },
     correo:{
         type:String,
@@ -39,4 +38,4 @@ const InstructorSchema = Schema({
 //el model pide dos parametros 
 //1. primer parametro la forma en que seguarda la coleccion den la BD
 //2. el segundo parametro el schema que acabamos de crear
-export default model("Instructor", InstructorSchema)
+export default model("Instructore", InstructorSchema)

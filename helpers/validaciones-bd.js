@@ -15,4 +15,11 @@ const esCorreoValido = async(correo)=>{
     }
 }
 
-export {esDocumentoValido, esCorreoValido}
+const existUsuarioporId = async (id) =>{
+    const existeUsuario = await Instructor.findOne(id)
+    if(!existeUsuario){
+            throw new Error(`El instructor no existe`)
+    }
+}
+
+export {esDocumentoValido, esCorreoValido, existUsuarioporId}
