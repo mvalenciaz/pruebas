@@ -8,15 +8,19 @@ const esDocumentoValido = async(numeroDocumento)=>{
     }
 }
 
-const esCorreoValido = async(correo)=>{
+const esCorreoValido = async(correo, id)=>{
     const email = await Instructor.findOne({correo})
+    console.log("busqueda "+email.id);
+    console.log("trae "+id);
     if (email){
+       if(email._id!=id){
         throw new Error(`El correo ${correo} ya existe`)
+       }
     }
 }
 
 const existUsuarioporId = async (id) =>{
-    const existeUsuario = await Instructor.findOne(id)
+    const existeUsuario = await Instructor.findById(id)
     if(!existeUsuario){
             throw new Error(`El instructor no existe`)
     }

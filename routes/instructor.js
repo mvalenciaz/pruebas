@@ -29,7 +29,7 @@ router.put('/:id',[
     check("numeroDocumento", "El numero de documento es obligatorio").notEmpty(),
     check("correo", "El correo es obligatorio").notEmpty(),
     check("correo", "El correo debe tener un formato valido").isEmail(),
-    check("correo").custom(correo => esCorreoValido(correo)),
+    check("correo").custom((correo, {req}) => esCorreoValido(correo, req.params.id)),
     check("telefono", "El telefono debe tener mas de 8 caracteres").isLength({min:6}),
     validarCampos
 ],InstructoresPut)
