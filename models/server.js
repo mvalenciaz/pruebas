@@ -5,6 +5,7 @@ import morgan from "morgan"
 import fileUpload from 'express-fileupload'
 import instructor from "../routes/instructor.js"
 import { dbConnection } from '../database/config.js'
+import ficha from './../routes/ficha.js'
 
 class Server {
 
@@ -50,6 +51,7 @@ class Server {
   routes(){
 
     this.app.use("/api/instructores", instructor)
+    this.app.use("/api/fichas", ficha)
    
   }
 

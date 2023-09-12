@@ -1,53 +1,53 @@
-import Instructor from "../models/instructor.js"
+import Ficha from './../models/ficha.js'
 import * as XLSX from "xlsx/xlsx.mjs"
 import * as fs from "fs"
 
 XLSX.set_fs(fs)
 
-const instructoresGet = async(req, res) => {
-    const instructores = await Instructor.find()
+const fichasGet = async(req, res) => {
+    const fichas = await Ficha.find()
 
     res.json({
-      instructores
+      fichas
     })
 }
 
 
-const InstructoresPost = async function (req, res) {
+const fichasPost = async function (req, res) {
     
     // la varibale body va a recibir todos los datos que envie el cliente
-    const body = req.body
-    console.log(body);
+    const {numeroFicha, instructorLider, nombrePrograma} = req.body
+    // console.log(body);
     //creamos una instancia del modelo y como parametro le enviamos todos los datos del body
-    const instructor = new Instructor(body)
+    const ficha = new Ficha({numeroFicha, instructorLider, nombrePrograma})
 
     //para guardar el registro en la base de datos
-    await instructor.save()
+    await ficha.save()
 
     res.json({
-      instructor
+      ficha
     })
   }
 
 
-  const InstructoresPut = async(req, res) =>{
+  const FichasPut = async(req, res) =>{
     const { id } = req.params
-    const {nombre, tipoDocumento, numeroDocumento, telefono, correo} = req.body
+    const {numeroFicha, instructorLider, nombrePrograma} = req.body
 
-    const instructor = await Instructor.findByIdAndUpdate(id, {nombre, tipoDocumento, numeroDocumento, telefono, correo})
+    const ficha = await Ficha.findByIdAndUpdate(id,{numeroFicha, instructorLider, nombrePrograma})
 
     res.json({
-      instructor
+      ficha
     })
     
   }
 
 
-  const InstructoresChangeState = async(req, res) =>{
+  const fichasChangeState = async(req, res) =>{
     const {id} = req.params
-    const usu = await Instructor.findById(id)
+    const fic = await Ficha.findById(id)
     let conduc=null
-    if (usu.estado==true){
+    if (fic.estado==true){
         conduc = await Instructor.findByIdAndUpdate(id,{estado:false})
     }else{
         conduc = await Instructor.findByIdAndUpdate(id,{estado:true})
@@ -97,4 +97,4 @@ const InstructoresPost = async function (req, res) {
 
 
 
-export { InstructoresPost, instructoresGet, InstructoresPut, getTowns, InstructoresChangeState}
+export { fichasPost, fichasGet, FichasPut, getTowns, fichasChangeState}
